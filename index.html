@@ -86,9 +86,14 @@ function toDateOnly(value){
   m = s.match(/^(\d{4})年(\d{1,2})月(\d{1,2})日/);
   if(m)return `${m[1]}-${String(m[2]).padStart(2,'0')}-${String(m[3]).padStart(2,'0')}`;
 
+  m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if(m)return `${m[3]}-${String(m[1]).padStart(2,'0')}-${String(m[2]).padStart(2,'0')}`;
+
   const d = new Date(s);
   if(!isNaN(d)){
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    // 用 UTC 取值，避免「YYYY-MM-DDTHH:mm:ssZ」這類字串被當成 UTC 午夜，
+    // 換算回本地時間（例如台灣 UTC+8）時往前跳一天的問題。
+    return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
   }
   return '';
 }
