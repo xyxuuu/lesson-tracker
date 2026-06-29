@@ -32,44 +32,45 @@
     .stats,.lesson-summary{grid-template-columns:1fr}
   }
 
-  /* iPhone / mobile date input fix */
-  input[type="date"]{
-    -webkit-appearance:none;
-    appearance:none;
-    min-height:52px;
-    line-height:52px;
-    padding:0 14px;
-    font-size:18px;
-  }
-  .date-row{
-    align-items:stretch;
-  }
-  .date-row > div{
-    min-width:0;
-  }
-  .date-row button,
-  .actions button{
-    min-height:52px;
-    font-size:17px;
+  /* iPhone / mobile date input fix：只套用在手機，避免電腦版跑版 */
+  .date-row > div{min-width:0}
+  @media(min-width:521px){
+    input[type="date"]{
+      height:42px;
+      min-height:42px;
+      line-height:42px;
+      font-size:16px;
+      padding:0 12px;
+    }
+    .date-row button,
+    .actions button{
+      height:42px;
+      min-height:42px;
+      font-size:15px;
+    }
   }
   @media(max-width:520px){
+    .student-card{overflow:hidden}
+    .form-grid,.date-row,.actions{grid-template-columns:1fr}
+    .date-row{gap:10px;align-items:stretch}
+    .actions{gap:10px}
     input[type="date"]{
+      -webkit-appearance:none;
+      appearance:none;
       width:100%;
+      height:56px;
       min-height:56px;
       line-height:56px;
       font-size:18px;
       text-align:center;
+      padding:0 14px;
     }
-    .student-card{
-      overflow:hidden;
-    }
-    .date-row{
-      grid-template-columns:1fr;
-      gap:10px;
-    }
-    .actions{
-      grid-template-columns:1fr;
-      gap:10px;
+    .date-row button,
+    .actions button{
+      width:100%;
+      height:52px;
+      min-height:52px;
+      font-size:17px;
     }
   }
 
