@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>上課紀錄</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="上課紀錄">
+<meta name="theme-color" content="#1F6F5C">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAD2ElEQVR4nO3dMY7cNgCGUdqIKze+QGDHTS5ln2F9lNwhh8gFcok0SQCXadykcgoXgwiL9fwajaQlJfK9yh7YGC75DTmjEbAv3j58KHDNy9YD4LjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA6iH1oPYKUvf36+/OHN+x/bjmTeWcZ51fnimKb78V8POPVnGecMxwrRyeJ48nK8+XgrZxnnvJPFQU3iIBIHkTiIDvRR9t8//rr9j17FAS/679VsG+frn3/adTQrtY/jWIt6DNOctK2k8bGijHlt56dlHMpYouEsNYtDGcu1mqs2cSjjXk1mrEEcW37OV1//u+vxVp5jnPX7qB2HPWOLyrPX/qPsvS4vvq//X0g42p4xOcs4Z5wvjouzzPVZxnlV1WPFmbJdzTn03QqROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iCqeifYP7/9XvPpevXu08c6T2TnIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJI7dVPs+rBpx7ONSRmd9iGMHj5voqQ9xbPV9Dd30IY5NUgfvPn3sIBFxPKOz9yGO9Zas/an7EMdKC1f9719+fe6RPB9xrDFCGUUcKwxSRhHHvcYpo4jjLqd+d7mCOJZaXkYf20YRx+66KaOIY6Gh3mpMxHHbmGUUcdw0bBlFHPNGLqN0H8eWD5+Dl1H6jmPL3VmjXdK4qts4ttydNeAljav6jGPL3VnKmJz1FwAm1Y6D7ssone0c82XseG/OCGWUnuLYvvbKeKKfOBau2cwtwTs+Sx/6iaNs6EMZV3UVR1nVhzKS3uIod/bhYteMDuNYziWNeX3Gse9ajllG6TWOst+KDltG6TiOsse6jlxG6TuOsm11By+jdB9HWbvGyigjxFHuX2llXAwRR7Heq4wSx3IymgwUx5JVV8ZjA8VRbq29Mp4YK46SC1DG93q7TXCJSwfTFyuySEaM40ITNw13rLCcOIjEQVQ1DrddbVdzDu0cROIgqh2Hk2WLyrPXYOfQxzr1582xQtQmDpvHvZrMWLOdQx/LtZqrF28fPjR54onvOGa0fQm1f89hC0maz0z7neMxu0g5QBOTY8XBobQ/VjgscRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgfRN9mJD+idehxHAAAAAElFTkSuQmCC">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAD2ElEQVR4nO3dMY7cNgCGUdqIKze+QGDHTS5ln2F9lNwhh8gFcok0SQCXadykcgoXgwiL9fwajaQlJfK9yh7YGC75DTmjEbAv3j58KHDNy9YD4LjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA6iH1oPYKUvf36+/OHN+x/bjmTeWcZ51fnimKb78V8POPVnGecMxwrRyeJ48nK8+XgrZxnnvJPFQU3iIBIHkTiIDvRR9t8//rr9j17FAS/679VsG+frn3/adTQrtY/jWIt6DNOctK2k8bGijHlt56dlHMpYouEsNYtDGcu1mqs2cSjjXk1mrEEcW37OV1//u+vxVp5jnPX7qB2HPWOLyrPX/qPsvS4vvq//X0g42p4xOcs4Z5wvjouzzPVZxnlV1WPFmbJdzTn03QqROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iCqeifYP7/9XvPpevXu08c6T2TnIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJI7dVPs+rBpx7ONSRmd9iGMHj5voqQ9xbPV9Dd30IY5NUgfvPn3sIBFxPKOz9yGO9Zas/an7EMdKC1f9719+fe6RPB9xrDFCGUUcKwxSRhHHvcYpo4jjLqd+d7mCOJZaXkYf20YRx+66KaOIY6Gh3mpMxHHbmGUUcdw0bBlFHPNGLqN0H8eWD5+Dl1H6jmPL3VmjXdK4qts4ttydNeAljav6jGPL3VnKmJz1FwAm1Y6D7ssone0c82XseG/OCGWUnuLYvvbKeKKfOBau2cwtwTs+Sx/6iaNs6EMZV3UVR1nVhzKS3uIod/bhYteMDuNYziWNeX3Gse9ajllG6TWOst+KDltG6TiOsse6jlxG6TuOsm11By+jdB9HWbvGyigjxFHuX2llXAwRR7Heq4wSx3IymgwUx5JVV8ZjA8VRbq29Mp4YK46SC1DG93q7TXCJSwfTFyuySEaM40ITNw13rLCcOIjEQVQ1DrddbVdzDu0cROIgqh2Hk2WLyrPXYOfQxzr1582xQtQmDpvHvZrMWLOdQx/LtZqrF28fPjR54onvOGa0fQm1f89hC0maz0z7neMxu0g5QBOTY8XBobQ/VjgscRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgfRN9mJD+idehxHAAAAAElFTkSuQmCC">
+
+<style>
+  :root {
+    --bg: #FAF8F4; --card: #FFFFFF; --border: #E3DFD3;
+    --text: #2B2A26; --text-secondary: #6E6B61; --text-muted: #A29D8E;
+    --accent: #1F6F5C; --accent-soft: #E3F1EC; --accent-text: #14483B;
+    --danger: #B23A3A; --danger-soft: #FBEAEA;
+    --warn: #8A6116; --warn-soft: #FAF1DC;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .container {
+    max-width: 480px; margin: 0 auto;
+    padding: calc(24px + env(safe-area-inset-top)) 16px calc(60px + env(safe-area-inset-bottom));
+  }
+  .header h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+  .header p { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+
+  .sync-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 8px 10px; margin-bottom: 16px; font-size: 12.5px;
+  }
+  .sync-bar.state-synced { color: var(--accent-text); }
+  .sync-bar.state-error { background: var(--danger-soft); color: var(--danger); border-color: transparent; }
+  .sync-bar.state-syncing { color: var(--text-secondary); }
+  .sync-bar.state-not-configured { color: var(--text-muted); }
+  .sync-status-text { flex: 1; }
+  .sync-bar button {
+    height: 28px; padding: 0 10px; font-size: 12px; background: transparent;
+    border: 1px solid var(--border); color: inherit;
+  }
+
+  .sync-settings {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px; margin-bottom: 16px;
+  }
+  .sync-settings p { font-size: 13px; color: var(--text-secondary); margin: 0 0 8px; line-height: 1.5; }
+  #sync-url-input { width: 100%; margin-bottom: 8px; }
+  .sync-settings-actions { display: flex; gap: 8px; }
+  #save-sync-btn { background: var(--accent); color: white; flex: 1; }
+  #disconnect-sync-btn { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+
+  .stats { display: flex; gap: 10px; margin-bottom: 20px; }
+  .stat-box { flex: 1; background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; text-align: center; }
+  .stat-num { font-size: 22px; font-weight: 600; margin: 0; color: var(--accent-text); }
+  .stat-label { font-size: 12px; color: var(--accent-text); margin: 2px 0 0; opacity: 0.85; }
+
+  .add-student-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px; display: flex; gap: 8px; margin-bottom: 16px;
+  }
+  input[type="text"], input[type="date"] {
+    border: 1px solid var(--border); border-radius: 8px; padding: 0 10px;
+    height: 40px; font-size: 15px; font-family: inherit; color: var(--text);
+    background: var(--bg); min-width: 0;
+  }
+  input[type="text"]:focus, input[type="date"]:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  #new-student-name { flex: 1; }
+
+  button {
+    border: none; border-radius: 8px; font-family: inherit; font-size: 14px;
+    cursor: pointer; height: 40px; padding: 0 14px; font-weight: 500;
+  }
+  #add-student-btn { background: var(--accent); color: white; white-space: nowrap; }
+  #add-student-btn:active { opacity: 0.85; }
+
+  #search-input { width: 100%; margin-bottom: 14px; }
+
+  .student-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+  .student-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .student-name { font-size: 16px; font-weight: 600; margin: 0; }
+  .student-count { font-size: 13px; color: var(--text-secondary); margin: 2px 0 0; }
+  .expand-arrow { color: var(--text-muted); font-size: 14px; padding: 8px; }
+
+  .add-lesson-row { display: flex; gap: 8px; margin-top: 12px; }
+  .date-input { flex: 1; }
+  .add-lesson-btn { background: var(--accent-soft); color: var(--accent-text); white-space: nowrap; }
+  .add-lesson-btn:active { opacity: 0.8; }
+
+  .lesson-history { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px; }
+  .lesson-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 2px; font-size: 14px; border-bottom: 1px solid var(--border); }
+  .lesson-item:last-child { border-bottom: none; }
+  .no-history { font-size: 13px; color: var(--text-muted); padding: 6px 2px; margin: 0; }
+
+  .del-lesson-btn { background: transparent; color: var(--text-muted); height: 28px; width: 28px; padding: 0; font-size: 16px; line-height: 1; }
+  .del-lesson-btn.confirming { background: var(--danger-soft); color: var(--danger); width: auto; padding: 0 8px; font-size: 12px; }
+
+  .del-student-btn { background: transparent; color: var(--text-muted); font-size: 13px; margin-top: 10px; width: 100%; text-align: center; }
+  .del-student-btn.confirming { background: var(--danger-soft); color: var(--danger); }
+
+  .empty-state { text-align: center; color: var(--text-muted); font-size: 14px; padding: 40px 20px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>上課紀錄</h1>
+    <p>記錄學生上課日期與累積堂數</p>
+  </div>
+
+  <div id="sync-bar" class="sync-bar"></div>
+  <div id="sync-settings" class="sync-settings" style="display:none"></div>
+
+  <div id="stats" class="stats"></div>
+
+  <div class="add-student-card">
+    <input type="text" id="new-student-name" placeholder="輸入學生姓名">
+    <button id="add-student-btn">新增學生</button>
+  </div>
+
+  <input type="text" id="search-input" placeholder="搜尋學生姓名">
+
+  <div id="student-list"></div>
+</div>
+
+<script>
+const STORE_KEY_STUDENTS = 'lesson_tracker_students';
+const STORE_KEY_LESSONS = 'lesson_tracker_lessons';
+const SYNC_URL_KEY = 'lesson_tracker_sync_url';
+const PENDING_KEY = 'lesson_tracker_pending_sync';
+const LAST_SYNC_KEY = 'lesson_tracker_last_sync';
+
+let students = [];
+let lessons = [];
+let expandedIds = new Set();
+let searchTerm = '';
+let settingsOpen = false;
+let syncState = 'not-configured'; // not-configured | syncing | synced | error
+
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
+  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}（週${weekdays[d.getDay()]}）`;
+}
+
+function formatTime(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+}
+
+/* ---------- local storage ---------- */
+function loadLocal() {
+  try { students = JSON.parse(localStorage.getItem(STORE_KEY_STUDENTS) || '[]'); } catch (e) { students = []; }
+  try { lessons = JSON.parse(localStorage.getItem(STORE_KEY_LESSONS) || '[]'); } catch (e) { lessons = []; }
+}
+function saveStudentsLocal() { try { localStorage.setItem(STORE_KEY_STUDENTS, JSON.stringify(students)); } catch (e) {} }
+function saveLessonsLocal() { try { localStorage.setItem(STORE_KEY_LESSONS, JSON.stringify(lessons)); } catch (e) {} }
+
+function getSyncUrl() { return localStorage.getItem(SYNC_URL_KEY) || ''; }
+function setSyncUrl(url) { localStorage.setItem(SYNC_URL_KEY, url); }
+function clearSyncUrl() { localStorage.removeItem(SYNC_URL_KEY); }
+
+/* ---------- cloud sync ---------- */
+async function pushToSheet() {
+  const url = getSyncUrl();
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ action: 'syncAll', students, lessons })
+  });
+  const data = await res.json();
+  if (!data.ok) throw new Error(data.error || 'sync failed');
+}
+
+async function pullFromSheet() {
+  const url = getSyncUrl();
+  const res = await fetch(url, { method: 'GET' });
+  const data = await res.json();
+  if (!data.ok) throw new Error(data.error || 'load failed');
+  students = data.students || [];
+  lessons = data.lessons || [];
+  saveStudentsLocal();
+  saveLessonsLocal();
+}
+
+async function triggerSync() {
+  if (!getSyncUrl()) return;
+  localStorage.setItem(PENDING_KEY, 'true');
+  syncState = 'syncing';
+  renderSyncBar();
+  try {
+    await pushToSheet();
+    localStorage.setItem(PENDING_KEY, 'false');
+    localStorage.setItem(LAST_SYNC_KEY, new Date().toISOString());
+    syncState = 'synced';
+  } catch (e) {
+    syncState = 'error';
+  }
+  renderSyncBar();
+}
+
+async function initSync() {
+  const url = getSyncUrl();
+  if (!url) { syncState = 'not-configured'; renderSyncBar(); return; }
+
+  const pending = localStorage.getItem(PENDING_KEY) === 'true';
+  syncState = 'syncing';
+  renderSyncBar();
+  try {
+    if (pending) {
+      await pushToSheet();
+      localStorage.setItem(PENDING_KEY, 'false');
+    } else {
+      await pullFromSheet();
+    }
+    localStorage.setItem(LAST_SYNC_KEY, new Date().toISOString());
+    syncState = 'synced';
+  } catch (e) {
+    syncState = 'error';
+  }
+  renderSyncBar();
+  render();
+}
+
+async function manualSync() {
+  syncState = 'syncing';
+  renderSyncBar();
+  try {
+    await pushToSheet();
+    await pullFromSheet();
+    localStorage.setItem(PENDING_KEY, 'false');
+    localStorage.setItem(LAST_SYNC_KEY, new Date().toISOString());
+    syncState = 'synced';
+  } catch (e) {
+    syncState = 'error';
+  }
+  renderSyncBar();
+  render();
+}
+
+async function connectSync() {
+  const input = document.getElementById('sync-url-input');
+  const url = input.value.trim();
+  if (!url) return;
+  setSyncUrl(url);
+  syncState = 'syncing';
+  renderSyncBar();
+  try {
+    await pushToSheet();
+    localStorage.setItem(PENDING_KEY, 'false');
+    localStorage.setItem(LAST_SYNC_KEY, new Date().toISOString());
+    syncState = 'synced';
+  } catch (e) {
+    syncState = 'error';
+  }
+  settingsOpen = false;
+  renderSyncBar();
+  renderSyncSettings();
+}
+
+function disconnectSync() {
+  clearSyncUrl();
+  localStorage.removeItem(PENDING_KEY);
+  syncState = 'not-configured';
+  settingsOpen = false;
+  renderSyncBar();
+  renderSyncSettings();
+}
+
+function toggleSettings() {
+  settingsOpen = !settingsOpen;
+  renderSyncSettings();
+}
+
+function renderSyncBar() {
+  const bar = document.getElementById('sync-bar');
+  bar.className = 'sync-bar state-' + syncState;
+  const lastSync = localStorage.getItem(LAST_SYNC_KEY);
+  let text, actionsHtml;
+  if (syncState === 'not-configured') {
+    text = '尚未設定雲端同步';
+    actionsHtml = `<button onclick="toggleSettings()">設定</button>`;
+  } else if (syncState === 'syncing') {
+    text = '同步中…';
+    actionsHtml = '';
+  } else if (syncState === 'synced') {
+    text = '已同步' + (lastSync ? `・上次更新 ${formatTime(lastSync)}` : '');
+    actionsHtml = `<button onclick="toggleSettings()">設定</button>`;
+  } else {
+    text = '同步失敗，已儲存在本機';
+    actionsHtml = `<button onclick="manualSync()">重試</button><button onclick="toggleSettings()">設定</button>`;
+  }
+  bar.innerHTML = `<span class="sync-status-text">${text}</span>${actionsHtml}`;
+}
+
+function renderSyncSettings() {
+  const panel = document.getElementById('sync-settings');
+  if (!settingsOpen) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  const configured = !!getSyncUrl();
+  panel.innerHTML = `
+    <p>貼上 Google Apps Script 部署後的網址（結尾是 /exec）</p>
+    <input type="text" id="sync-url-input" placeholder="https://script.google.com/macros/s/.../exec" value="${escapeHtml(getSyncUrl())}">
+    <div class="sync-settings-actions">
+      <button id="save-sync-btn" onclick="connectSync()">儲存並同步</button>
+      ${configured ? `<button id="disconnect-sync-btn" onclick="disconnectSync()">取消連接</button>` : ''}
+    </div>
+  `;
+}
+
+/* ---------- data actions ---------- */
+function addStudent() {
+  const input = document.getElementById('new-student-name');
+  const name = input.value.trim();
+  if (!name) return;
+  students.push({ id: genId(), name });
+  input.value = '';
+  saveStudentsLocal();
+  render();
+  triggerSync();
+}
+
+function addLesson(studentId, date) {
+  if (!date) return;
+  lessons.push({ id: genId(), studentId, date });
+  saveLessonsLocal();
+  render();
+  triggerSync();
+}
+
+function deleteLessonConfirmed(id) {
+  lessons = lessons.filter(l => l.id !== id);
+  saveLessonsLocal();
+  render();
+  triggerSync();
+}
+
+function deleteStudentConfirmed(id) {
+  students = students.filter(s => s.id !== id);
+  lessons = lessons.filter(l => l.studentId !== id);
+  saveStudentsLocal();
+  saveLessonsLocal();
+  render();
+  triggerSync();
+}
+
+function toggleExpand(id) {
+  if (expandedIds.has(id)) expandedIds.delete(id); else expandedIds.add(id);
+  render();
+}
+
+function confirmAction(btn, confirmText, onConfirm) {
+  if (btn.dataset.confirming === 'true') {
+    clearTimeout(parseInt(btn.dataset.timeoutId));
+    onConfirm();
+  } else {
+    btn.dataset.confirming = 'true';
+    btn.dataset.originalText = btn.textContent;
+    btn.textContent = confirmText;
+    btn.classList.add('confirming');
+    const t = setTimeout(() => {
+      btn.dataset.confirming = 'false';
+      btn.textContent = btn.dataset.originalText;
+      btn.classList.remove('confirming');
+    }, 2500);
+    btn.dataset.timeoutId = t;
+  }
+}
+
+function handleAddLesson(studentId) {
+  const input = document.getElementById('date-' + studentId);
+  addLesson(studentId, input.value);
+}
+function handleDeleteLesson(btn, lessonId) {
+  confirmAction(btn, '確定?', () => deleteLessonConfirmed(lessonId));
+}
+function handleDeleteStudent(btn, studentId) {
+  confirmAction(btn, '確定刪除？', () => deleteStudentConfirmed(studentId));
+}
+
+/* ---------- render ---------- */
+function render() {
+  document.getElementById('stats').innerHTML = `
+    <div class="stat-box"><p class="stat-num">${students.length}</p><p class="stat-label">學生人數</p></div>
+    <div class="stat-box"><p class="stat-num">${lessons.length}</p><p class="stat-label">累積堂數</p></div>
+  `;
+
+  const listEl = document.getElementById('student-list');
+
+  if (students.length === 0) {
+    listEl.innerHTML = `<div class="empty-state">還沒有學生，在上方輸入姓名新增第一位學生。</div>`;
+    return;
+  }
+
+  const filtered = students
+    .filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    .sort((a, b) => a.name.localeCompare(b.name, 'zh-Hant'));
+
+  if (filtered.length === 0) {
+    listEl.innerHTML = `<div class="empty-state">找不到符合「${escapeHtml(searchTerm)}」的學生。</div>`;
+    return;
+  }
+
+  listEl.innerHTML = filtered.map(s => {
+    const studentLessons = lessons.filter(l => l.studentId === s.id).sort((a, b) => b.date.localeCompare(a.date));
+    const count = studentLessons.length;
+    const expanded = expandedIds.has(s.id);
+
+    const historyHtml = studentLessons.length === 0
+      ? `<p class="no-history">尚無上課紀錄。</p>`
+      : studentLessons.map(l => `
+          <div class="lesson-item">
+            <span>${formatDate(l.date)}</span>
+            <button class="del-lesson-btn" onclick="handleDeleteLesson(this, '${l.id}')">×</button>
+          </div>
+        `).join('');
+
+    return `
+      <div class="student-card">
+        <div class="student-header" onclick="toggleExpand('${s.id}')">
+          <div>
+            <p class="student-name">${escapeHtml(s.name)}</p>
+            <p class="student-count">共 ${count} 堂</p>
+          </div>
+          <span class="expand-arrow">${expanded ? '▾' : '▸'}</span>
+        </div>
+        <div class="add-lesson-row">
+          <input type="date" class="date-input" id="date-${s.id}" value="${todayStr()}">
+          <button class="add-lesson-btn" onclick="handleAddLesson('${s.id}')">+ 記一堂</button>
+        </div>
+        ${expanded ? `
+          <div class="lesson-history">${historyHtml}</div>
+          <button class="del-student-btn" onclick="handleDeleteStudent(this, '${s.id}')">刪除這位學生</button>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+document.getElementById('add-student-btn').addEventListener('click', addStudent);
+document.getElementById('new-student-name').addEventListener('keydown', e => {
+  if (e.key === 'Enter') addStudent();
+});
+document.getElementById('search-input').addEventListener('input', e => {
+  searchTerm = e.target.value;
+  render();
+});
+
+loadLocal();
+render();
+renderSyncBar();
+renderSyncSettings();
+initSync();
+</script>
+</body>
+</html>
